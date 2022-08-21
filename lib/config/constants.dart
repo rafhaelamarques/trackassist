@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:latlng/latlng.dart';
 
 const String APP_NAME = "Track Assist";
 
@@ -27,3 +28,6 @@ const int STATUS_INTERNAL_ERROR = 500;
 
 // ERROS
 const String ERROR_OCCURED = 'Um erro ocorreu, tente novamente mais tarde.';
+
+//COORDINATES
+const LatLng BELO_HORIZONTE = LatLng(-19.912998, -43.940933);

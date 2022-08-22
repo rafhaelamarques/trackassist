@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:latlng/latlng.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 const String APP_NAME = "Track Assist";
 
@@ -19,6 +19,7 @@ const Color GREY = Colors.grey;
 const Color BLACK_GREY = Color(0xff777777);
 const Color BLACK21 = Colors.black;
 const Color BLACK55 = Color(0xFF555555);
+const Color WHITE = Color.fromARGB(255, 255, 255, 255);
 
 const int STATUS_OK = 200;
 const int STATUS_BAD_REQUEST = 400;

@@ -6,6 +6,8 @@ import '../config/constants.dart';
 import '../reusable/widgets/default_appbar.dart';
 import 'dart:async';
 
+import 'filter_dialog.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -41,49 +43,88 @@ class _HomePageState extends State<HomePage> {
         titleText: "TrackAssist",
         customActions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: ((context) => const ColorFilterDialog()));
+            },
             icon: const Icon(LineIcons.filter),
           )
         ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: const <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: COR_PRIMARIA,
-              ),
-              child: Text(
-                'TrackAssist',
-                style: TextStyle(
-                  color: WHITE,
-                  fontSize: 20,
+      drawer: SizedBox(
+        width: 220,
+        child: Drawer(
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  children: const <Widget>[
+                    SizedBox(
+                      height: 100,
+                      child: DrawerHeader(
+                        decoration: BoxDecoration(
+                          color: COR_PRIMARIA,
+                        ),
+                        child: Text(
+                          'TrackAssist',
+                          style: TextStyle(
+                            color: WHITE,
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                    ),
+                    ListTile(
+                      leading:
+                          Icon(LineIcons.home, color: COR_PRIMARIA, size: 28),
+                      title: Text('Home', style: TextStyle(fontSize: 16)),
+                    ),
+                    ListTile(
+                      leading: Icon(LineIcons.alternateMapMarked,
+                          color: COR_PRIMARIA, size: 28),
+                      title:
+                          Text('Prestadores', style: TextStyle(fontSize: 16)),
+                    ),
+                    ListTile(
+                      leading: Icon(LineIcons.palette,
+                          color: COR_PRIMARIA, size: 28),
+                      title: Text('Filtros', style: TextStyle(fontSize: 16)),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            ListTile(
-              leading: Icon(LineIcons.home),
-              title: Text('Home'),
-            ),
-            ListTile(
-              leading: Icon(LineIcons.alternateMapMarked),
-              title: Text('Prestadores'),
-            ),
-            ListTile(
-              leading: Icon(LineIcons.pallet),
-              title: Text('Filtros'),
-            ),
-          ],
+              const Spacer(),
+              const Divider(),
+              const ListTile(
+                leading:
+                    Icon(LineIcons.infoCircle, color: COR_PRIMARIA, size: 28),
+                title: Text("Sobre", style: TextStyle(fontSize: 16)),
+              ),
+            ],
+          ),
         ),
       ),
       body: Stack(children: [
         googleMaps(_markers, _cameraPosition(), _onMapCreated, _canAddMarker),
-        ElevatedButton(
-          onPressed: _addMarker,
-          child: const Icon(
-            Icons.location_on_outlined,
-            size: 50,
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(COR_PRIMARIA),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40))),
+                  fixedSize: MaterialStateProperty.all(const Size(80, 80))),
+              onPressed: _addMarker,
+              child: const Icon(
+                Icons.location_on_outlined,
+                size: 50,
+              ),
+            ),
           ),
         ),
       ]),

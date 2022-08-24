@@ -12,12 +12,16 @@ class DefaultAppBar extends AppBar {
   @override
   Widget? get title => Text(titleText,
       style: const TextStyle(
-          fontSize: 20, fontWeight: FontWeight.bold, color: WHITE));
+          fontSize: 22, fontWeight: FontWeight.bold, color: WHITE));
+
+  @override
+  bool? get centerTitle => true;
+
   @override
   Color? get backgroundColor => COR_PRIMARIA;
 
   @override
-  IconThemeData? get iconTheme => const IconThemeData(color: WHITE);
+  IconThemeData? get iconTheme => const IconThemeData(color: WHITE, size: 30);
 
   @override
   List<Widget>? get actions => customActions;

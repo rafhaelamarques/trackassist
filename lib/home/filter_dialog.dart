@@ -10,6 +10,10 @@ class ColorFilterDialog extends StatefulWidget {
 class _ColorFilterDialogState extends State<ColorFilterDialog> {
   @override
   Widget build(BuildContext context) {
-    return AlertDialog();
+    return Container(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+        child: Column());
   }
 }

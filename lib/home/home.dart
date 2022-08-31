@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:trackassist/reusable/widgets/google_map.dart';
+import 'package:trackassist/styles/custom_input_styles.dart';
 import '../config/constants.dart';
 import '../reusable/widgets/default_appbar.dart';
 import 'dart:async';
-
 import 'filter_dialog.dart';
 
 class HomePage extends StatefulWidget {
@@ -108,21 +108,45 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: Stack(children: [
-        googleMaps(_markers, _cameraPosition(), _onMapCreated, _canAddMarker),
+        Column(
+          children: [
+            const SizedBox(height: 10),
+            TextFormField(
+              decoration: CustomInputStyles.iconLabel(
+                  "Estado", const Icon(LineIcons.map)),
+            ),
+            const SizedBox(height: 10),
+            TextFormField(
+              decoration: CustomInputStyles.iconLabel(
+                  "Município", const Icon(LineIcons.map)),
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 140),
+          child: googleMaps(
+            _markers,
+            _cameraPosition(),
+            _onMapCreated,
+            _canAddMarker,
+          ),
+        ),
         Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: ElevatedButton(
               style: ButtonStyle(
+                  padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
                   backgroundColor: MaterialStateProperty.all(COR_PRIMARIA),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40))),
-                  fixedSize: MaterialStateProperty.all(const Size(80, 80))),
+                      borderRadius: BorderRadius.circular(30))),
+                  fixedSize: MaterialStateProperty.all(const Size(60, 60))),
               onPressed: _addMarker,
               child: const Icon(
                 Icons.location_on_outlined,
-                size: 50,
+                size: 40,
               ),
             ),
           ),
